@@ -40,6 +40,7 @@ class SessionController {
       token: jwt.sign(
         {
           id: user.id,
+          name: user.name,
         },
         authConfig.secret,
         {

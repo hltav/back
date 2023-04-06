@@ -16,6 +16,7 @@ export default (request, response, next) => {
         throw new Error();
       }
       request.userId = decoded.id;
+      request.userName = decoded.name;
       return next();
     });
   } catch (err) {
