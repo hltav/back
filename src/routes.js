@@ -20,9 +20,11 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 routes.post('/products', upLoad.single('file'), ProductController.store);
+routes.put('/products/:id', upLoad.single('file'), ProductController.update);
 routes.get('/products', ProductController.index);
 
-routes.post('/categories', CategoryController.store);
+routes.post('/categories', upLoad.single('file'), CategoryController.store);
+routes.put('/categories/:id', upLoad.single('file'), CategoryController.update);
 routes.get('/categories', CategoryController.index);
 
 routes.post('/orders', OrderController.store);
