@@ -16,7 +16,7 @@ class SessionController {
     };
 
     if (!(await schema.isValid(request.body))) {
-      userEmailOrPasswordIncorrect();
+      return userEmailOrPasswordIncorrect();
     }
 
     const { email, password } = request.body;
@@ -25,11 +25,11 @@ class SessionController {
       where: { email },
     });
     if (!user) {
-      userEmailOrPasswordIncorrect();
+      return userEmailOrPasswordIncorrect();
     }
 
     if (!(await user.checkPassword(password))) {
-      userEmailOrPasswordIncorrect();
+      return userEmailOrPasswordIncorrect();
     }
 
     return response.json({
