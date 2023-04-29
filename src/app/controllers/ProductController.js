@@ -7,10 +7,22 @@ class ProductController {
   async store(request, response) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      price: Yup.number().required(),
+      price: Yup.number().float().required(),
       category_id: Yup.number().required(),
       offer: Yup.boolean(),
     });
+    // const schema = Yup.object().shape({
+    //   name: Yup.string().required(),
+    //   price: Yup.number()
+    //     .transform((value, originalValue) => {
+    //       const floatValue = parseFloat(originalValue.replace(',', '.'));
+    //       return isNaN(floatValue) ? undefined : floatValue;
+    //     })
+    //     .nullable()
+    //     .required(),
+    //   category_id: Yup.number().required(),
+    //   offer: Yup.boolean(),
+    // });
 
     try {
       await schema.validateSync(request.body, { abortEarly: false });
